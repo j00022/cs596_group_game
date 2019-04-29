@@ -10,14 +10,19 @@ public class StalkerMovement : MonoBehaviour
     {
         
     }
+
     private void Update()
     {
-
-        if (gameObject.transform.position.y < 0)
+        transform.position += transform.forward * Time.deltaTime * 2f;
+        if (!(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), 10)))
         {
-
             Instantiate(newBody, new Vector3((Random.Range(1, 19) * 3.75f), 1, (Random.Range(1, 19) * 3.75f)), Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)));
             Destroy(gameObject);
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        transform.rotation = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0));
     }
 }

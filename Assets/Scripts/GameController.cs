@@ -22,7 +22,7 @@ public class GameController : MonoBehaviour
     }
     private void StartNewMaze()
     {
-        generator.GenerateNewMaze(13, 15, OnStartTrigger, OnGoalTrigger);
+        generator.GenerateNewMaze(21, 21, OnStartTrigger, OnGoalTrigger);
 
         float x = generator.startCol * generator.hallWidth;
         float y = 1;
@@ -44,14 +44,16 @@ public class GameController : MonoBehaviour
     {
         goalReached = true;
         Destroy(trigger);
+        //player.enabled = false;
+        //Invoke("StartNewGame", .5f);
     }
 
-    void OnStartTrigger(GameObject trigger, GameObject other)
+    void OnStartTrigger(GameObject trigger, GameObject other)   //this method does not do anything
     {
         if (goalReached)
         {
             player.enabled = false;
-            Invoke("StartNewGame", .5f);
+           Invoke("StartNewGame", .5f);
         }
     }
 }

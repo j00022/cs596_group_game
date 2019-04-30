@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StalkerMovement : MonoBehaviour
 {
@@ -23,6 +24,14 @@ public class StalkerMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        transform.rotation = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0));
+        if (collision.gameObject.name == "Player")
+        {
+            Destroy(gameObject);
+            SceneManager.LoadScene("Level 1");
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0));
+        }
     }
 }

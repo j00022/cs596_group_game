@@ -20,7 +20,7 @@ public class GameController : MonoBehaviour
     {
         StartNewMaze();
     }
-    private void StartNewMaze()
+    public void StartNewMaze()
     {
         generator.GenerateNewMaze(21, 21, OnStartTrigger, OnGoalTrigger);
 

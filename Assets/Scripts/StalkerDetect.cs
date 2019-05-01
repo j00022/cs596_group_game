@@ -19,7 +19,7 @@ public class StalkerDetect : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         smooth = 1f;
         angle = 2f;
-        range = 6;
+        range = Mathf.Infinity;
         radius = 0.7f;
         currentHitDistance = range;
 }

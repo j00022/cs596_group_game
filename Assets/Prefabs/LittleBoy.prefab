@@ -103,8 +103,8 @@ GameObject:
   - component: {fileID: 2286741922803413811}
   - component: {fileID: 3464990827928500034}
   - component: {fileID: 5077222082750361603}
-  - component: {fileID: -3886305531890934404}
   - component: {fileID: -4482307091662577194}
+  - component: {fileID: 4959404649288785229}
   m_Layer: 0
   m_Name: LittleBoy
   m_TagString: Untagged
@@ -186,22 +186,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-3886305531890934404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1240882180182077948}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 337aafc56110b214ea27d180d4e4145e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  smooth: 0
-  angle: 0
-  range: 0
-  radius: 0
 --- !u!54 &-4482307091662577194
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -218,3 +202,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
+--- !u!114 &4959404649288785229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240882180182077948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 337aafc56110b214ea27d180d4e4145e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smooth: 0
+  angle: 0
+  range: 0
+  radius: 0

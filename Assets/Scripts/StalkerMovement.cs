@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StalkerDetect : MonoBehaviour
+public class StalkerMovement : MonoBehaviour
 {
     public float smooth, angle;
     private Quaternion targetRotation;

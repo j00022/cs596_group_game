@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StalkerDetect : MonoBehaviour
 {
@@ -33,10 +34,10 @@ public class StalkerDetect : MonoBehaviour
                 Chase(player, hit);
             }
             else
-                Rotate();
+                transform.position += transform.forward * Time.deltaTime * 2f;
         }
         else {
-            Rotate();
+            transform.position += transform.forward * Time.deltaTime * 2f;
             currentHitDistance = range;
         }
     }
@@ -49,14 +50,20 @@ public class StalkerDetect : MonoBehaviour
         transform.position += transform.forward * Time.deltaTime * 2f;
     }
 
-    void Rotate() {
-        targetRotation = transform.rotation * Quaternion.AngleAxis(angle, Vector3.up);
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 10 * smooth * Time.deltaTime);
-    }
-
     private void OnDrawGizmos() {
         Gizmos.color = Color.red;
         Debug.DrawLine(origin, origin + fwd * currentHitDistance);
         Gizmos.DrawWireSphere(origin + fwd * currentHitDistance, radius);
+    }
+
+    private void OnCollisionEnter(Collision collision) {
+        Debug.Log("Hit");
+        if (collision.gameObject.name == "Player") {
+            Destroy(gameObject);
+            SceneManager.LoadScene("Level 1");
+        }
+        else {
+            transform.rotation = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0));
+        }
     }
 }

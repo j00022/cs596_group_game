@@ -195,10 +195,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1240882180182077948}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b04a15f6d3dd77b44a969dea904d7343, type: 3}
+  m_Script: {fileID: 11500000, guid: 337aafc56110b214ea27d180d4e4145e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newBody: {fileID: 1240882180182077948}
+  smooth: 0
+  angle: 0
+  range: 0
+  radius: 0
 --- !u!54 &-4482307091662577194
 Rigidbody:
   m_ObjectHideFlags: 0

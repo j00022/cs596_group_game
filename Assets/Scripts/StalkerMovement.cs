@@ -20,6 +20,7 @@ public class StalkerMovement : MonoBehaviour
             Instantiate(newBody, new Vector3((Random.Range(1, 19) * 3.75f), 1, (Random.Range(1, 19) * 3.75f)), Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)));
             Destroy(gameObject);
         }
+        transform.position = new Vector3(transform.position.x, 1, transform.position.z);
     }
 
     private void OnCollisionEnter(Collision collision)

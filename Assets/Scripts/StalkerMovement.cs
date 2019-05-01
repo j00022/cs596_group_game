@@ -3,35 +3,66 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StalkerMovement : MonoBehaviour
+public class StalkerDetect : MonoBehaviour
 {
-    [SerializeField] GameObject newBody;
+    public float smooth, angle;
+    private Quaternion targetRotation;
 
-    private void Start()
-    {
-        
-    }
+    public float range, radius;
+    private float currentHitDistance;
+    private GameObject player;
+    private Vector3 fwd, origin;
+    RaycastHit hit;
 
-    private void Update()
-    {
-        transform.position += transform.forward * Time.deltaTime * 2f;
-        if (!(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), 10)))
-        {
-            Instantiate(newBody, new Vector3((Random.Range(1, 19) * 3.75f), 1, (Random.Range(1, 19) * 3.75f)), Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)));
-            Destroy(gameObject);
+    void Start() {
+        targetRotation = transform.rotation;
+        player = GameObject.FindWithTag("Player");
+        smooth = 1f;
+        angle = 2f;
+        range = Mathf.Infinity;
+        radius = 0.7f;
+        currentHitDistance = range;
+}
+
+    void Update() {
+        origin = transform.position;
+        fwd = transform.TransformDirection(Vector3.forward);
+        if (Physics.SphereCast(origin, radius, fwd, out hit, range)) {
+            currentHitDistance = hit.distance;
+            if (hit.collider.gameObject.tag == "Player") {
+                Debug.Log("Player found");
+                Chase(player, hit);
+            }
+            else
+                transform.position += transform.forward * Time.deltaTime * 2f;
         }
-        transform.position = new Vector3(transform.position.x, 1, transform.position.z);
+        else {
+            transform.position += transform.forward * Time.deltaTime * 2f;
+            currentHitDistance = range;
+        }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.name == "Player")
-        {
+    void Chase(GameObject player, RaycastHit hit) {
+        Vector3 direction = player.transform.position - transform.position;
+        Quaternion newDir = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Lerp(transform.rotation, newDir, 20 * smooth * Time.deltaTime);
+
+        transform.position += transform.forward * Time.deltaTime * 2f;
+    }
+
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.red;
+        Debug.DrawLine(origin, origin + fwd * currentHitDistance);
+        Gizmos.DrawWireSphere(origin + fwd * currentHitDistance, radius);
+    }
+
+    private void OnCollisionEnter(Collision collision) {
+        Debug.Log("Hit");
+        if (collision.gameObject.name == "Player") {
             Destroy(gameObject);
             SceneManager.LoadScene("Level 1");
         }
-        else
-        {
+        else {
             transform.rotation = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0));
         }
     }

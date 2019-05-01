@@ -8,6 +8,7 @@ public class StalkerDetect : MonoBehaviour
     private Quaternion targetRotation;
 
     public float range, radius;
+    private float currentHitDistance;
     private GameObject player;
     private Vector3 fwd, origin;
     RaycastHit hit;
@@ -18,28 +19,34 @@ public class StalkerDetect : MonoBehaviour
         smooth = 1f;
         angle = 2f;
         range = 6;
-        radius = 1;
+        radius = 0.7f;
+        currentHitDistance = range;
 }
 
     void Update() {
         origin = transform.position;
         fwd = transform.TransformDirection(Vector3.forward);
         if (Physics.SphereCast(origin, radius, fwd, out hit, range)) {
+            currentHitDistance = hit.distance;
             if (hit.collider.gameObject.tag == "Player") {
                 Debug.Log("Player found");
-                LookAt(player, hit);
+                Chase(player, hit);
             }
             else
                 Rotate();
         }
-        else
+        else {
             Rotate();
+            currentHitDistance = range;
+        }
     }
 
-    void LookAt(GameObject player, RaycastHit hit) {
+    void Chase(GameObject player, RaycastHit hit) {
         Vector3 direction = player.transform.position - transform.position;
         Quaternion newDir = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Lerp(transform.rotation, newDir, 20 * smooth * Time.deltaTime);
+
+        transform.position += transform.forward * Time.deltaTime * 2f;
     }
 
     void Rotate() {
@@ -49,7 +56,7 @@ public class StalkerDetect : MonoBehaviour
 
     private void OnDrawGizmos() {
         Gizmos.color = Color.red;
-        Debug.DrawLine(origin, origin + fwd * hit.distance);
-        Gizmos.DrawWireSphere(origin + fwd * hit.distance, radius);
+        Debug.DrawLine(origin, origin + fwd * currentHitDistance);
+        Gizmos.DrawWireSphere(origin + fwd * currentHitDistance, radius);
     }
 }

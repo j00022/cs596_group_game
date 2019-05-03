@@ -3,26 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StalkerDetect : MonoBehaviour
-{
-    public float smooth, angle;
-    private Quaternion targetRotation;
+public class StalkerMovement : MonoBehaviour {
 
-    public float range, radius;
+    public float speed, range, radius, minDist;
     private float currentHitDistance;
     private GameObject player;
     private Vector3 fwd, origin;
     RaycastHit hit;
 
     void Start() {
-        targetRotation = transform.rotation;
         player = GameObject.FindWithTag("Player");
-        smooth = 1f;
-        angle = 2f;
+        minDist = 3f;
+        speed = 2f;
         range = Mathf.Infinity;
         radius = 0.7f;
         currentHitDistance = range;
-}
+    }
 
     void Update() {
         origin = transform.position;
@@ -30,40 +26,42 @@ public class StalkerDetect : MonoBehaviour
         if (Physics.SphereCast(origin, radius, fwd, out hit, range)) {
             currentHitDistance = hit.distance;
             if (hit.collider.gameObject.tag == "Player") {
-                Debug.Log("Player found");
-                Chase(player, hit);
+                Chase(player);
             }
+            else if (hit.collider.gameObject.tag != "Stalker" && currentHitDistance <= minDist)
+                AvoidWall();
             else
-                transform.position += transform.forward * Time.deltaTime * 2f;
+                transform.position += transform.forward * Time.deltaTime * speed;
         }
         else {
-            transform.position += transform.forward * Time.deltaTime * 2f;
+            transform.position += transform.forward * Time.deltaTime * speed;
             currentHitDistance = range;
         }
     }
 
-    void Chase(GameObject player, RaycastHit hit) {
+    void Chase(GameObject player) {
         Vector3 direction = player.transform.position - transform.position;
         Quaternion newDir = Quaternion.LookRotation(direction);
-        transform.rotation = Quaternion.Lerp(transform.rotation, newDir, 20 * smooth * Time.deltaTime);
-
-        transform.position += transform.forward * Time.deltaTime * 2f;
+        transform.rotation = Quaternion.Lerp(transform.rotation, newDir, 20 * Time.deltaTime);
+        transform.position += transform.forward * Time.deltaTime * speed;
     }
 
+    public void AvoidWall() {
+        Quaternion degrees = Quaternion.Euler(0, speed, 0);
+        Quaternion turn = transform.rotation *= degrees;
+        transform.rotation = Quaternion.Lerp(transform.rotation, turn, Time.deltaTime);
+    }
+
+    private void OnCollisionEnter(Collision collision) {
+        if (collision.gameObject.name == "Player") {
+            Scene currentScene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(currentScene.name);
+        }
+    }
+    
     private void OnDrawGizmos() {
         Gizmos.color = Color.red;
         Debug.DrawLine(origin, origin + fwd * currentHitDistance);
         Gizmos.DrawWireSphere(origin + fwd * currentHitDistance, radius);
-    }
-
-    private void OnCollisionEnter(Collision collision) {
-        Debug.Log("Hit");
-        if (collision.gameObject.name == "Player") {
-            Destroy(gameObject);
-            SceneManager.LoadScene("Level 1");
-        }
-        else {
-            transform.rotation = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0));
-        }
     }
 }

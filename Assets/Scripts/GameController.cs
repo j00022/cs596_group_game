@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 [RequireComponent(typeof(MazeConstructor))]
 
@@ -53,7 +55,7 @@ public class GameController : MonoBehaviour
         if (goalReached)
         {
             player.enabled = false;
-           Invoke("StartNewGame", .5f);
+            SceneManager.LoadScene("Level 1");
         }
     }
 }

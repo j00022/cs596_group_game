@@ -58,7 +58,7 @@ public class StalkerMovement : MonoBehaviour {
             SceneManager.LoadScene(currentScene.name);
         }
     }
-    
+
     private void OnDrawGizmos() {
         Gizmos.color = Color.red;
         Debug.DrawLine(origin, origin + fwd * currentHitDistance);

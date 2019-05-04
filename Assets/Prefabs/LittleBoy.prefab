@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 313684284905253547}
   - component: {fileID: 3373066068645911006}
   - component: {fileID: 1039433469691285359}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,9 +105,9 @@ GameObject:
   - component: {fileID: 5077222082750361603}
   - component: {fileID: -3886305531890934404}
   - component: {fileID: -4482307091662577194}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: LittleBoy
-  m_TagString: Untagged
+  m_TagString: Stalker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -198,10 +198,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 337aafc56110b214ea27d180d4e4145e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smooth: 0
-  angle: 0
+  speed: 0
   range: 0
   radius: 0
+  minDist: 0
 --- !u!54 &-4482307091662577194
 Rigidbody:
   m_ObjectHideFlags: 0

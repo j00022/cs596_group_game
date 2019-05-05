@@ -5,12 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class StalkerMovement : MonoBehaviour {
 
-    public float speed, visionRange, visionRadius, personalSpace, minDist, chaseCounter, turnCounter;
+    public float speed, visionRange, visionRadius, minDist, searchCounter;
     public int turnDir;
-    private float currentHitDistance;
-    private int x;
+    private float currentHitDistance, chaseCounter, turnCounter, searchTimer;
+    private int x, y;
     private GameObject player;
     private Vector3 fwd, origin;
+    private bool playerSpotted;
     RaycastHit hit;
 
     void Start() {
@@ -22,9 +23,12 @@ public class StalkerMovement : MonoBehaviour {
         currentHitDistance = visionRange;
         turnDir = (Random.Range(0, 2) == 0) ? 1 : -1;
         turnCounter = 0;
-        GetComponent<Rigidbody>().isKinematic = false;
+        GetComponent<Rigidbody>().isKinematic = true;
         x = (Random.Range(9, 15));
+        y = (Random.Range(15, 35));
         chaseCounter = 0;
+        searchTimer = 3;
+        searchCounter = 0;
     }
 
     void Update() {
@@ -32,7 +36,8 @@ public class StalkerMovement : MonoBehaviour {
         fwd = transform.TransformDirection(Vector3.forward);
         /*Change turn direction every x seconds*/
         turnCounter += 1 * Time.deltaTime;
-        if (Mathf.FloorToInt(turnCounter) % x < 1) {
+        searchCounter += 1 * Time.deltaTime;
+        if (turnCounter % x < 1) {
             turnDir *= -1;
             x = (Random.Range(9, 15));
             if (turnCounter > 100)
@@ -41,11 +46,22 @@ public class StalkerMovement : MonoBehaviour {
         if (Physics.SphereCast(origin, visionRadius, fwd, out hit, visionRange)) {
             currentHitDistance = hit.distance;
             if (hit.collider.gameObject.tag == "Player") {
+                playerSpotted = true;
                 chaseCounter = 2;
                 Chase(player);
             }
+            if (searchCounter > y && !playerSpotted) {
+                Rotate();
+                searchTimer -= 1 * Time.deltaTime;
+                if (searchTimer < 0) {
+                    searchTimer = 3;
+                    searchCounter = 0;
+                    y = (Random.Range(15, 35));
+                }
+                return;
+            }
             else if (currentHitDistance <= minDist)
-                AvoidWall();
+                Rotate();
             else
                 transform.position += transform.forward * Time.deltaTime * speed;
         }
@@ -58,6 +74,8 @@ public class StalkerMovement : MonoBehaviour {
             Chase(player);
             chaseCounter -= 1 * Time.deltaTime;
         }
+        else
+            playerSpotted = false;
     }
 
     void Chase(GameObject player) {
@@ -67,7 +85,7 @@ public class StalkerMovement : MonoBehaviour {
         transform.position += transform.forward * Time.deltaTime * speed * 1.25f;
     }
 
-    public void AvoidWall() {
+    public void Rotate() {
         Quaternion degrees = Quaternion.Euler(0, turnDir * speed, 0);
         Quaternion turn = transform.rotation *= degrees;
         transform.rotation = Quaternion.Lerp(transform.rotation, turn, Time.deltaTime);

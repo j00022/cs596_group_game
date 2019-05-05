@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 448305325237986620}
   - component: {fileID: 2995613056490479949}
   - component: {fileID: 6913441512299931148}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BigBoy
-  m_TagString: Untagged
+  m_TagString: Stalker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 2152437812672036004}
   - component: {fileID: 3984306124405411793}
   - component: {fileID: 1722732150279690592}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}

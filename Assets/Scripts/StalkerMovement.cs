@@ -7,12 +7,19 @@ public class StalkerMovement : MonoBehaviour {
 
     public float speed, visionRange, visionRadius, minDist, searchCounter;
     public int turnDir;
+    public AudioSource _as;
+    public AudioClip[] audioClipArray;
     private float currentHitDistance, chaseCounter, turnCounter, searchTimer;
     private int x, y;
     private GameObject player;
     private Vector3 fwd, origin;
     private bool playerSpotted;
+    private bool soundPlay = false;
     RaycastHit hit;
+
+    void Awake() {
+        _as = GetComponent<AudioSource>();
+    }
 
     void Start() {
         player = GameObject.FindWithTag("Player");
@@ -29,6 +36,7 @@ public class StalkerMovement : MonoBehaviour {
         chaseCounter = 0;
         searchTimer = 3;
         searchCounter = 0;
+        _as.clip = audioClipArray[Random.Range(0, audioClipArray.Length)];
     }
 
     void Update() {
@@ -49,6 +57,10 @@ public class StalkerMovement : MonoBehaviour {
                 playerSpotted = true;
                 chaseCounter = 2;
                 Chase(player);
+                if (soundPlay == false) {
+                    _as.PlayOneShot(_as.clip);
+                    soundPlay = true;
+                }
             }
             if (searchCounter > y && !playerSpotted) {
                 Rotate();

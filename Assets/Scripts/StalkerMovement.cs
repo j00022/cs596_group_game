@@ -91,16 +91,16 @@ public class StalkerMovement : MonoBehaviour {
         transform.rotation = Quaternion.Lerp(transform.rotation, turn, Time.deltaTime);
     }
 
-    private void OnCollisionEnter(Collision collision) {
-        if (collision.gameObject.name == "Player") {
-            Scene currentScene = SceneManager.GetActiveScene();
-            SceneManager.LoadScene(currentScene.name);
-        }
-    }
-
     private void OnDrawGizmos() {
         Gizmos.color = Color.red;
         Debug.DrawLine(origin, origin + fwd * currentHitDistance);
         Gizmos.DrawWireSphere(origin + fwd * currentHitDistance, visionRadius);
+    }
+
+    public void OnTriggerEnter(Collider collision) {
+        if (collision.gameObject.tag == "Player") {
+            Scene currentScene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(currentScene.name);
+        }
     }
 }

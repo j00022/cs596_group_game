@@ -149,12 +149,13 @@ public class MazeConstructor : MonoBehaviour
         var startPostion = go.transform.position;
         startPostion = new Vector3(startCol * hallWidth, .15f, startRow * hallWidth);
         Quaternion startRotation = Quaternion.identity;
-        Instantiate(go, startPostion, startRotation);
+        
 
         go.name = "Start Trigger";
         go.tag = "Generated";
 
         go.GetComponent<BoxCollider>().isTrigger = true;
+        Instantiate(go, startPostion, startRotation);
 
         TriggerEventRouter tc = go.AddComponent<TriggerEventRouter>();
         tc.callback = callback;
@@ -166,12 +167,13 @@ public class MazeConstructor : MonoBehaviour
         var treasurePostion = go.transform.position;
         treasurePostion = new Vector3(goalCol * hallWidth, .2f, goalRow * hallWidth);
         Quaternion treasureRotation = Quaternion.identity;
-        Instantiate(go, treasurePostion, treasureRotation);
+        
 
         go.name = "Treasure";
         go.tag = "Generated";
 
         go.GetComponent<BoxCollider>().isTrigger = true;
+        Instantiate(go, treasurePostion, treasureRotation);
 
         TriggerEventRouter tc = go.AddComponent<TriggerEventRouter>();
         tc.callback = callback;

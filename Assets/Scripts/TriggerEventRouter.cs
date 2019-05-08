@@ -16,6 +16,7 @@ public class TriggerEventRouter : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        Debug.Log("collided");
         if (callback != null)
         {
             callback(this.gameObject, other.gameObject);

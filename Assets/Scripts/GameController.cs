@@ -24,7 +24,8 @@ public class GameController : MonoBehaviour
     }
     public void StartNewMaze()
     {
-        generator.GenerateNewMaze(21, 21, OnStartTrigger, OnGoalTrigger);
+        generator.GenerateNewMaze(9, 11, OnStartTrigger, OnGoalTrigger);
+        Debug.Log("triggersgenerated");
 
         float x = generator.startCol * generator.hallWidth;
         float y = 1;
@@ -42,16 +43,17 @@ public class GameController : MonoBehaviour
             return;
         }
     }
+
     private void OnGoalTrigger(GameObject trigger, GameObject other)
     {
+        Debug.Log("goaltriggered");
         goalReached = true;
         Destroy(trigger);
-        //player.enabled = false;
-        //Invoke("StartNewGame", .5f);
     }
 
     void OnStartTrigger(GameObject trigger, GameObject other)   //this method does not do anything
     {
+        Debug.Log("starttriggered");
         if (goalReached)
         {
             player.enabled = false;

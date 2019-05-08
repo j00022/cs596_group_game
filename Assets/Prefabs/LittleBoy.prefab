@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &57270536312739213
 Transform:
   m_ObjectHideFlags: 0
@@ -140,7 +140,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 09b303bc367b7e84b8c6db5d3bdc6d05, type: 2}
+  - {fileID: 2100000, guid: 044e9173d88a1eb46ac89f0c271ffec9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -174,24 +174,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-3886305531890934404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1240882180182077948}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 337aafc56110b214ea27d180d4e4145e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0
-  visionRange: 0
-  visionRadius: 0
-  minDist: 0
-  searchCounter: 0
-  turnDir: 0
 --- !u!54 &-4482307091662577194
 Rigidbody:
   m_ObjectHideFlags: 0

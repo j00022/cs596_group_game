@@ -19,7 +19,7 @@ public class LevelController : MonoBehaviour
 
     public void LoadCredits()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
 
     }
 

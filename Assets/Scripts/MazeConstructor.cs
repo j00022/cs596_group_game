@@ -155,10 +155,12 @@ public class MazeConstructor : MonoBehaviour
         go.tag = "Generated";
 
         go.GetComponent<BoxCollider>().isTrigger = true;
+        Debug.Log("starttriggerassigned");
         Instantiate(go, startPostion, startRotation);
 
-        TriggerEventRouter tc = go.AddComponent<TriggerEventRouter>();
+        TriggerEventRouter tc = go.GetComponent<TriggerEventRouter>();
         tc.callback = callback;
+
     }
 
     private void PlaceGoalTrigger(TriggerEventHandler callback)
@@ -173,9 +175,12 @@ public class MazeConstructor : MonoBehaviour
         go.tag = "Generated";
 
         go.GetComponent<BoxCollider>().isTrigger = true;
+        Debug.Log("goaltriggerassigned");
         Instantiate(go, treasurePostion, treasureRotation);
 
-        TriggerEventRouter tc = go.AddComponent<TriggerEventRouter>();
+        TriggerEventRouter tc = go.GetComponent<TriggerEventRouter>();
         tc.callback = callback;
-    }      
+
+
+    }
 }

@@ -317,12 +317,43 @@ PrefabInstance:
         type: 3}
       propertyPath: mazeMat2
       value: 
-      objectReference: {fileID: 2100000, guid: 6e05e961f0767684a8655e01b4cbaed8, type: 2}
+      objectReference: {fileID: 2100000, guid: e9ae4c51a8098714eb5479002e323939, type: 2}
     - target: {fileID: 8931182298667499020, guid: ac61e8a383f09f54192a8016b20a02a3,
         type: 3}
       propertyPath: mazeMat1
       value: 
+      objectReference: {fileID: 2100000, guid: 6e05e961f0767684a8655e01b4cbaed8, type: 2}
+    - target: {fileID: 8931182298667499020, guid: ac61e8a383f09f54192a8016b20a02a3,
+        type: 3}
+      propertyPath: startPrefab
+      value: 
+      objectReference: {fileID: 100000, guid: 26096449e47058e47b7f547a8101ea61, type: 3}
+    - target: {fileID: 8931182298667499020, guid: ac61e8a383f09f54192a8016b20a02a3,
+        type: 3}
+      propertyPath: treasurePrefab
+      value: 
+      objectReference: {fileID: 6438008933672354277, guid: 79b795426d862f0449fb2cbcbc762a3a,
+        type: 3}
+    - target: {fileID: 8931182298667499020, guid: ac61e8a383f09f54192a8016b20a02a3,
+        type: 3}
+      propertyPath: wallMat
+      value: 
       objectReference: {fileID: 2100000, guid: e9ae4c51a8098714eb5479002e323939, type: 2}
+    - target: {fileID: 8931182298667499020, guid: ac61e8a383f09f54192a8016b20a02a3,
+        type: 3}
+      propertyPath: floorMat
+      value: 
+      objectReference: {fileID: 2100000, guid: 6e05e961f0767684a8655e01b4cbaed8, type: 2}
+    - target: {fileID: 8931182298667499020, guid: ac61e8a383f09f54192a8016b20a02a3,
+        type: 3}
+      propertyPath: treasureMat
+      value: 
+      objectReference: {fileID: 2100000, guid: c5b8154923bae4fedbbb1f1aca66fd98, type: 2}
+    - target: {fileID: 8931182298667499020, guid: ac61e8a383f09f54192a8016b20a02a3,
+        type: 3}
+      propertyPath: startMat
+      value: 
+      objectReference: {fileID: 2100000, guid: c8296ee06001c4d39b0f615626264b85, type: 2}
     m_RemovedComponents:
     - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: ac61e8a383f09f54192a8016b20a02a3, type: 3}
@@ -1284,6 +1315,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: StalkerController
+      objectReference: {fileID: 0}
+    - target: {fileID: 4415465359067234908, guid: 4f9c95dea84c7514faf57cc39ae1f587,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4415465359067234915, guid: 4f9c95dea84c7514faf57cc39ae1f587,
         type: 3}

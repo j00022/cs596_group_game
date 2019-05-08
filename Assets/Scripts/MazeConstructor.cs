@@ -11,10 +11,10 @@ public class MazeConstructor : MonoBehaviour
 
     public bool showDebug;
 
-    [SerializeField] private Material mazeMat1;
-    [SerializeField] private Material mazeMat2;
-    [SerializeField] private Material startMat;
-    [SerializeField] private Material treasureMat;
+    [SerializeField] private Material floorMat;
+    [SerializeField] private Material wallMat;
+    [SerializeField] public GameObject startPrefab;
+    [SerializeField] public GameObject treasurePrefab;
 
     public float hallWidth
     {
@@ -82,7 +82,6 @@ public class MazeConstructor : MonoBehaviour
         GameObject go = new GameObject();
         go.transform.position = Vector3.zero;
         go.name = "Procedural Maze";
-        go.tag = "Generated";
 
         MeshFilter mf = go.AddComponent<MeshFilter>();
         mf.mesh = meshGenerator.FromData(data);
@@ -91,7 +90,7 @@ public class MazeConstructor : MonoBehaviour
         mc.sharedMesh = mf.mesh;
 
         MeshRenderer mr = go.AddComponent<MeshRenderer>();
-        mr.materials = new Material[2] { mazeMat1, mazeMat2 };
+        mr.materials = new Material[2] { floorMat, wallMat };
     }
 
     public void DisposeOldMaze()
@@ -145,29 +144,38 @@ public class MazeConstructor : MonoBehaviour
     }
     private void PlaceStartTrigger(TriggerEventHandler callback)
     {
-        GameObject go = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        go.transform.position = new Vector3(startCol * hallWidth, .5f, startRow * hallWidth);
+        GameObject go = startPrefab;
+        var startPostion = go.transform.position;
+        startPostion = new Vector3(startCol * hallWidth, .15f, startRow * hallWidth);
+        Quaternion startRotation = Quaternion.identity;
+        
+
         go.name = "Start Trigger";
-        go.tag = "Generated";
 
         go.GetComponent<BoxCollider>().isTrigger = true;
-        go.GetComponent<MeshRenderer>().sharedMaterial = startMat;
+        Debug.Log("starttriggerassigned");
+        Instantiate(go, startPostion, startRotation);
 
-        TriggerEventRouter tc = go.AddComponent<TriggerEventRouter>();
+        TriggerEventRouter tc = go.GetComponent<TriggerEventRouter>();
         tc.callback = callback;
+
     }
 
     private void PlaceGoalTrigger(TriggerEventHandler callback)
     {
-        GameObject go = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        go.transform.position = new Vector3(goalCol * hallWidth, .5f, goalRow * hallWidth);
+        GameObject go = treasurePrefab;
+        var treasurePostion = go.transform.position;
+        treasurePostion = new Vector3(goalCol * hallWidth, .2f, goalRow * hallWidth);
+        Quaternion treasureRotation = Quaternion.identity;
+        
+
         go.name = "Treasure";
-        go.tag = "Generated";
 
         go.GetComponent<BoxCollider>().isTrigger = true;
-        go.GetComponent<MeshRenderer>().sharedMaterial = treasureMat;
+        Debug.Log("goaltriggerassigned");
+        Instantiate(go, treasurePostion, treasureRotation);
 
-        TriggerEventRouter tc = go.AddComponent<TriggerEventRouter>();
+        TriggerEventRouter tc = go.GetComponent<TriggerEventRouter>();
         tc.callback = callback;
-    }      
+    }
 }

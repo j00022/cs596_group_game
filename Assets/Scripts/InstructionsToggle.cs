@@ -8,9 +8,12 @@ public class InstructionsToggle : MonoBehaviour
 {
     public Text instructions;
     private int instructionsFlag = 0;
+    private GameObject minimap;
+
     void Start()
     {
         instructionsFlag = 0;
+        minimap = GameObject.Find("Minimap Image");
     }
 
     // Update is called once per frame
@@ -29,6 +32,9 @@ public class InstructionsToggle : MonoBehaviour
                 instructionsFlag = 0;
                 instructions.enabled = true;
             }
+        }
+        if (Input.GetKeyDown(KeyCode.M)) {
+            minimap.SetActive(!minimap.activeSelf);
         }
     }
 }

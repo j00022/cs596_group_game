@@ -24,7 +24,7 @@ public class GameController : MonoBehaviour
     }
     public void StartNewMaze()
     {
-        generator.GenerateNewMaze(9, 11, OnStartTrigger, OnGoalTrigger);
+        generator.GenerateNewMaze(15, 15, OnStartTrigger, OnGoalTrigger);
         Debug.Log("triggersgenerated");
 
         float x = generator.startCol * generator.hallWidth;

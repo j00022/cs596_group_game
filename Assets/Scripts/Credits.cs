@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class Credits : MonoBehaviour
 {
@@ -19,8 +21,7 @@ public class Credits : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            lt.color = Color.green; //testing escape key working. REMOVE WHEN PUTTING IN RETURN TO MAIN MENU
-            //INSERT RETURN TO MAIN MENU CODE HERE
+            SceneManager.LoadScene(0);
         }
     }
 }

@@ -13,10 +13,11 @@ GameObject:
   - component: {fileID: 2300000}
   - component: {fileID: 7386304577984769842}
   - component: {fileID: -2736133328110240096}
-  - component: {fileID: -3434305777653106654}
+  - component: {fileID: 5233525303137811806}
+  - component: {fileID: 5795735228341188716}
   m_Layer: 0
   m_Name: floor_segment_updated
-  m_TagString: Generated
+  m_TagString: Spawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,7 +110,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-3434305777653106654
+--- !u!114 &5233525303137811806
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,3 +122,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d03bbcbc203b5b4fb68d8bb13145bbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5795735228341188716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 038ce414465fea546bd76326edf3e1ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goal_reached: 0

@@ -82,7 +82,6 @@ public class MazeConstructor : MonoBehaviour
         GameObject go = new GameObject();
         go.transform.position = Vector3.zero;
         go.name = "Procedural Maze";
-        go.tag = "Generated";
 
         MeshFilter mf = go.AddComponent<MeshFilter>();
         mf.mesh = meshGenerator.FromData(data);
@@ -152,7 +151,6 @@ public class MazeConstructor : MonoBehaviour
         
 
         go.name = "Start Trigger";
-        go.tag = "Generated";
 
         go.GetComponent<BoxCollider>().isTrigger = true;
         Debug.Log("starttriggerassigned");
@@ -172,7 +170,6 @@ public class MazeConstructor : MonoBehaviour
         
 
         go.name = "Treasure";
-        go.tag = "Generated";
 
         go.GetComponent<BoxCollider>().isTrigger = true;
         Debug.Log("goaltriggerassigned");
@@ -180,7 +177,5 @@ public class MazeConstructor : MonoBehaviour
 
         TriggerEventRouter tc = go.GetComponent<TriggerEventRouter>();
         tc.callback = callback;
-
-
     }
 }

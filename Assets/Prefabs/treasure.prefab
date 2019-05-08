@@ -206,7 +206,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2578904831556408185}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.112, y: 0.096, z: 0.868}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 476992232479561992}
@@ -561,10 +561,11 @@ GameObject:
   - component: {fileID: 4633381847584307770}
   - component: {fileID: 5436645832161970631}
   - component: {fileID: 3745143252096413365}
-  - component: {fileID: -8638830867347699886}
+  - component: {fileID: 8258381136010972377}
+  - component: {fileID: 8839111333429616956}
   m_Layer: 0
   m_Name: treasure
-  m_TagString: Generated
+  m_TagString: Treasure
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -618,7 +619,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-8638830867347699886
+--- !u!114 &8258381136010972377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6438008933672354277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88e0a980b271c304f96d60633521258f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8839111333429616956
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -1,1 +1,0 @@
-Our GDD and TDD are located in the Wiki
